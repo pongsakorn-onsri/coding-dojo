@@ -28,24 +28,24 @@ class Dice {
         if groupedByNum.values.count == 3 && isAllPair {
             return 800
         }
-        for value in groupedByNum {
-            switch value.value.count {
+        for (key, value) in groupedByNum {
+            switch value.count {
             case 1:
-                if value.key == 1 {
+                if key == 1 {
                     score += singleOneValue
-                } else if value.key == 5 {
+                } else if key == 5 {
                     score += singleFiveValue
                 }
             case 2:
-                if value.key == 1 {
-                    score += singleOneValue * value.value.count
-                } else if value.key == 5 {
-                    score += singleFiveValue * value.value.count
+                if key == 1 {
+                    score += singleOneValue * value.count
+                } else if key == 5 {
+                    score += singleFiveValue * value.count
                 }
-            case 3: score += value.key == 1 ? 1000 : (100 * value.key)
-            case 4: score += value.key == 1 ? 1000 * 2 : (100 * value.key) * 2
-            case 5: score += value.key == 1 ? 1000 * 4 : (100 * value.key) * 4
-            case 6: score += value.key == 1 ? 1000 * 8 : (100 * value.key) * 8
+            case 3: score += key == 1 ? 1000 : (100 * key)
+            case 4: score += key == 1 ? 1000 * 2 : (100 * key) * 2
+            case 5: score += key == 1 ? 1000 * 4 : (100 * key) * 4
+            case 6: score += key == 1 ? 1000 * 8 : (100 * key) * 8
             default:
                 break
             }

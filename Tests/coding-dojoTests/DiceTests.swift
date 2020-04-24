@@ -189,6 +189,20 @@ final class Dice_Test : QuickSpec {
                     let score = dice.score()
                     expect(score).to(equal(150))
                 }
+                
+                it("got value 1,2,3,4,5 and 6 is gone") {
+                    let values = [2,1,4,3,5]
+                    let dice = Dice(values: values)
+                    let score = dice.score()
+                    expect(score).to(equal(150))
+                }
+                
+                it("got value 1,1,2,2") {
+                    let values = [1,1,2,2]
+                    let dice = Dice(values: values)
+                    let score = dice.score()
+                    expect(score).to(equal(200))
+                }
             }
         }
     }

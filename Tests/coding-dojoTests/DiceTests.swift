@@ -42,6 +42,13 @@ final class Dice_Test : QuickSpec {
                     let score = dice.score()
                     expect(score).to(equal(50))
                 }
+                
+                it("got value 1,1,1,4,6,6 ") {
+                    let values = [1,1,1,4,6,6]
+                    let dice = Dice(values: values)
+                    let score = dice.score()
+                    expect(score).to(equal(1000))
+                }
             }
         }
     }

@@ -15,6 +15,15 @@ class Dice {
     }
     
     func score() -> Int {
-        return 0
+        var score = 0
+        for value in values {
+            if value == 1 {
+                score = score + 100
+            }
+            if value == 5 {
+                score = score + 50
+            }
+        }
+        return score
     }
 }

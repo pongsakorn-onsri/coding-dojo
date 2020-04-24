@@ -16,54 +16,31 @@ class Dice {
     
     func score() -> Int {
         let singleOneValue = 100
-        
+        let singleFiveValue = 50
         var score = 0
-        var numberOfOne = 0
-        var numberOfTwo = 0
-        var numberOfThree = 0
-        var numberOfFour = 0
-        var numberOfFive = 0
-        var numberOfSix = 0
-        for value in values {
-            if value == 1 {
-                score = score + singleOneValue
-                numberOfOne += 1
-            }
-            if value == 5 {
-                score = score + 50
-                numberOfFive += 1
-            }
-            if value == 2 {
-                numberOfTwo += 1
-            }
-            if value == 3 {
-                numberOfThree += 1
-            }
-            if value == 4 {
-                numberOfFour += 1
-            }
-            if value == 6 {
-                numberOfSix += 1
-            }
-        }
+        let groupedByNum = Dictionary(grouping: self.values) { $0 }
         
-        if numberOfOne == 3 {
-            score += 1000 - (numberOfOne * singleOneValue)
-        }
-        if numberOfTwo == 3 {
-            score += 200
-        }
-        if numberOfThree == 3 {
-            score += 300
-        }
-        if numberOfFour == 3 {
-            score += 400
-        }
-        if numberOfFive == 3 {
-            score += 500 - (numberOfFive * 50)
-        }
-        if numberOfSix == 3 {
-            score += 600
+        for value in groupedByNum {
+            switch value.value.count {
+            case 1:
+                if value.key == 1 {
+                    score += singleOneValue
+                } else if value.key == 5 {
+                    score += singleFiveValue
+                }
+            case 2:
+                if value.key == 1 {
+                    score += singleOneValue * value.value.count
+                } else if value.key == 5 {
+                    score += singleFiveValue * value.value.count
+                }
+            case 3: score += value.key == 1 ? 1000 : (100 * value.key)
+            case 4: score += value.key == 1 ? 1000 * 2 : (100 * value.key) * 2
+            case 5: score += value.key == 1 ? 1000 * 4 : (100 * value.key) * 4
+            case 6: score += value.key == 1 ? 1000 * 8 : (100 * value.key) * 8
+            default:
+                break
+            }
         }
         return score
     }

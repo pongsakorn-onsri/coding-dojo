@@ -15,8 +15,6 @@ class Dice {
     }
     
     func score() -> Int {
-        let singleOneValue = 100
-        let singleFiveValue = 50
         var score = 0
         let groupedByNum = Dictionary(grouping: self.values) { $0 }
         let result = values.map { "\($0)" }.joined(separator: ",")
@@ -28,24 +26,28 @@ class Dice {
         if groupedByNum.values.count == 3 && isAllPair {
             return 800
         }
-        for (key, value) in groupedByNum {
-            switch value.count {
-            case 1:
-                if key == 1 {
-                    score += singleOneValue
-                } else if key == 5 {
-                    score += singleFiveValue
-                }
+        for (key, values) in groupedByNum {
+            let baseValue = key == 1 ? 10 : key
+            switch values.count {
+            case 6: score += (100 * baseValue) * 8
+            case 5: score += (100 * baseValue) * 4
+            case 4: score += (100 * baseValue) * 2
+            case 3: score += (100 * baseValue)
             case 2:
-                if key == 1 {
-                    score += singleOneValue * value.count
-                } else if key == 5 {
-                    score += singleFiveValue * value.count
+                if groupedByNum.values.filter({ $0.count == 3 }).count == 1 {
+                    score += 250
+                } else {
+                    fallthrough
                 }
-            case 3: score += key == 1 ? 1000 : (100 * key)
-            case 4: score += key == 1 ? 1000 * 2 : (100 * key) * 2
-            case 5: score += key == 1 ? 1000 * 4 : (100 * key) * 4
-            case 6: score += key == 1 ? 1000 * 8 : (100 * key) * 8
+            case 1:
+                values.forEach { (value) in
+                    if value == 1 {
+                        score += 100
+                    } else if value == 5 {
+                        score += 50
+                    }
+                }
+                
             default:
                 break
             }

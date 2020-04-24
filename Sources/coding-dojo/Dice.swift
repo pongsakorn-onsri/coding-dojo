@@ -19,6 +19,7 @@ class Dice {
         
         var score = 0
         var numberOfOne = 0
+        var numberOfTwo = 0
         for value in values {
             if value == 1 {
                 score = score + singleOneValue
@@ -27,10 +28,17 @@ class Dice {
             if value == 5 {
                 score = score + 50
             }
+            if value == 2 {
+                numberOfTwo += 1
+            }
         }
         
         if numberOfOne == 3 {
             score += 1000 - (numberOfOne * singleOneValue)
+        }
+        
+        if numberOfTwo == 3 {
+            score += 200
         }
         return score
     }

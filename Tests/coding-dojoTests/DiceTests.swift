@@ -147,6 +147,27 @@ final class Dice_Test : QuickSpec {
                     let score = dice.score()
                     expect(score).to(equal(1600))
                 }
+                
+                it("got value 2,2,2,2,4,3 ") {
+                    let values = [2,2,2,2,4,3]
+                    let dice = Dice(values: values)
+                    let score = dice.score()
+                    expect(score).to(equal(400))
+                }
+                
+                it("got value 2,2,3,3,4,4 ") {
+                    let values = [2,2,3,3,4,4]
+                    let dice = Dice(values: values)
+                    let score = dice.score()
+                    expect(score).to(equal(800))
+                }
+                
+                it("got value 1,1,3,3,4,4 ") {
+                    let values = [1,1,3,3,4,4]
+                    let dice = Dice(values: values)
+                    let score = dice.score()
+                    expect(score).to(equal(800))
+                }
             }
         }
     }

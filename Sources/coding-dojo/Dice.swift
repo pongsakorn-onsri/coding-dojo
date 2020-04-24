@@ -19,6 +19,10 @@ class Dice {
         let singleFiveValue = 50
         var score = 0
         let groupedByNum = Dictionary(grouping: self.values) { $0 }
+        let isAllPair = !groupedByNum.values.compactMap({ $0.count }).contains(where: { $0 != 2 })
+        if groupedByNum.values.count == 3 && isAllPair {
+            return 800
+        }
         
         for value in groupedByNum {
             switch value.value.count {

@@ -21,6 +21,10 @@ class Phone {
     var button8: [String] = ["T", "U", "V"]
     var button9: [String] = ["W", "X", "Y", "Z"]
     var button0: [String] = ["+"]
+    var buttons: [[String]] {
+        [button0, button1, button2, button3, button4, button5, button6, button7, button8, button9]
+    }
+        
     var buttonStar: (() -> Void)? = nil
     var buttonShap: (() -> Void)? = nil
     
@@ -30,12 +34,16 @@ class Phone {
     
     func getMessage() -> String {
         var output: String = ""
-        if input == "2" {
-            output = button2.first ?? ""
-        } else if input == "22" {
-            output = button2[1]
-        } else if input == "222" {
-            output = button2[2]
+        var temptInput: [String] = []
+        input.forEach { (charactor) in
+            temptInput.append(String(charactor))
+        }
+        let temptDict = Dictionary.init(grouping: temptInput, by: { Int($0)! })
+        temptDict.forEach { (key, values) in
+            let number = buttons[key]
+            let index = values.count - 1
+            let charactor = number[index]
+            output += charactor
         } 
         return output
     }

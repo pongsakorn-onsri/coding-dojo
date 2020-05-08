@@ -46,6 +46,37 @@ final class Phone_Test : QuickSpec {
                 let message = phone.getMessage()
                 expect(message).to(be("F"))
             }
+            it("input is 4 then message is G") {
+                let phone = Phone(input: "4")
+                let message = phone.getMessage()
+                expect(message).to(be("G"))
+            }
+            it("input is 44 then message is H") {
+                let phone = Phone(input: "44")
+                let message = phone.getMessage()
+                expect(message).to(be("H"))
+            }
+            it("input is 444 then message is I") {
+                let phone = Phone(input: "444")
+                let message = phone.getMessage()
+                expect(message).to(be("I"))
+            }
+            
+            it("input is 5 then message is J") {
+                let phone = Phone(input: "5")
+                let message = phone.getMessage()
+                expect(message).to(be("J"))
+            }
+            it("input is 55 then message is K") {
+                let phone = Phone(input: "55")
+                let message = phone.getMessage()
+                expect(message).to(be("K"))
+            }
+            it("input is 555 then message is L") {
+                let phone = Phone(input: "555")
+                let message = phone.getMessage()
+                expect(message).to(be("L"))
+            }
         }
     }
 }
